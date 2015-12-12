@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+<script language=javascript>
+
+path=window.location.href.split('/').pop();
+value=path.split('?').pop();
+
+fetch('https://adam.noncd.db.de/api/v1.0/facilities/'+value).then(function(response) { 
+	// Convert to JSON
+	return response.json();
+}).then(function(j) {
+	// Yay, `j` is a JavaScript object
+	console.log(j); 
+if (j["state"] == "ACTIVE") document.write ("<IMG SRC=green.png>");
+if (j["state"] == "INACTIVE") document.write ("<IMG SRC=red.png>");
+document.write(j["description"]);
+document.write(" ");
+//document.write(j["state"]);
+
+
+uri= 'https://adam.noncd.db.de/api/v1.0/stations/' + j["stationnumber"];
+fetch(uri).then(function(response) { 
+        // Convert to JSON
+        return response.json();
+}).then(function(j) {
+        // Yay, `j` is a JavaScript object
+        console.log(j); 
+document.write(" (" + j["name"]+")");
+
+
+});
+
+
+
+});
+
+
+
+
+</script>
+</body>
+</html>
+
