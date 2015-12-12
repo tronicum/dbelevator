@@ -16,6 +16,7 @@ fetch('https://adam.noncd.db.de/api/v1.0/facilities/'+value).then(function(respo
 	console.log(j); 
 if (j["state"] == "ACTIVE") document.write ("<IMG SRC=green.png>");
 if (j["state"] == "INACTIVE") document.write ("<IMG SRC=red.png>");
+if (j["state"] == "UNKOWN") document.write ("<IMG SRC=orange.png>");
 document.write(j["description"]);
 document.write(" ");
 //document.write(j["state"]);
